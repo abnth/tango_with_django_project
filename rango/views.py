@@ -6,6 +6,7 @@ from rango.forms import CategoryForm, PageForm
 from rango.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     context=RequestContext(request)
@@ -14,7 +15,7 @@ def index(request):
     return render_to_response('rango/index.html',context_dict,context)
 def about(request):
 	context=RequestContext(request)
-	context_dict={'message':"this is the message from about voew to about template"}
+	context_dict={'message':"Aakash lets you touch the sky! Aakash lets you pursue your dream!"}
 	return render_to_response("rango/about.html",context_dict,context)
 
 def category(request,category_name_url):
@@ -28,6 +29,7 @@ def category(request,category_name_url):
 	category_dict={'pages':pages}
 	category_dict['category']=category
 	return render_to_response('rango/category.html',category_dict,context)#view name goes here
+@login_required
 def add_category(request):
 	context=RequestContext(request)
 	if(request.method=='POST'):
@@ -58,6 +60,7 @@ def add_category(request):
 		#now after checking category exists do 
 from rango.forms import PageForm
 
+@login_required
 def add_page(request, category_name_url):
     context = RequestContext(request)
 
@@ -150,4 +153,7 @@ def user_login(request):
     else:
 	#the form has to be displayed
 	return render_to_response('rango/login.html',{},context)
-
+from django.contrib.auth import logout
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect("/rango/")

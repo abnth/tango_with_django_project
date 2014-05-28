@@ -72,6 +72,8 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
+LOGIN_URL="/rango/login/"
+
 TIME_ZONE = 'UTC'
 
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
