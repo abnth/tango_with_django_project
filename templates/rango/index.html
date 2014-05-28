@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+
+    <head>
+        <title>Rango</title>
+    </head>
+
+    <body>
+        hello world!
+	the data passed to me is {{boldmessage}}<br />
+	here is a link to the about page
+	<a href='/rango/about'>about</a>
+	<img src="{%static 'images/Aakash_logo.png'%}" alt="aakash logo">
+	{%if categories%}	
+	<ul>	
+	{% for c in categories %}
+	
+	<li>
+	{{c.name}}
+	</li>
+	
+	{% endfor %}
+	</ul>
+	{%else%}
+	there are no categories present
+	{%endif%}
+	<a href="/rango/add_category">add a category</a>
+	<a href="/rango/register/">Register Here</a>
+    </body>
+
+</html>

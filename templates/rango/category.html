@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+</head>
+<body>
+{%if category%}
+{%if pages%}
+<ul>
+{%for p in pages%}
+<li>
+<a href="{{p.url}}">{{p.title}}</a>
+</li>
+{%endfor%}
+</ul>
+{%else%}
+no pages within the category
+{%endif%}
+{%else%}
+no such category exists
+{%endif%}
+<a href="/rango/category/{{category.name}}/add_page/">add page</a>
+</body>
+</html>
+
