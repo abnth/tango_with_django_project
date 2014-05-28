@@ -7,26 +7,31 @@
     </head>
 
     <body>
-        hello world!
-	the data passed to me is {{boldmessage}}<br />
-	here is a link to the about page
-	<a href='/rango/about'>about</a>
-	<img src="{%static 'images/Aakash_logo.png'%}" alt="aakash logo">
+	<img src="{%static 'images/Aakash_logo.png'%}" alt="aakash logo"><br />
+        {%if user.is_authenticated%}
+	<h1>hello {{user.username}}</h1>
+	{%else%}
+	<h1>hello world!</h1>
+	{%endif%}
+	A message: {{boldmessage}}<br />
+	Here is a link to the about page :
+	<a href='/rango/about'>About</a><br/>
+	Here is a list of categories (if present):<br />
 	{%if categories%}	
 	<ul>	
-	{% for c in categories %}
-	
+	{% for c in categories %}	
 	<li>
 	{{c.name}}
-	</li>
-	
+	</li>	
 	{% endfor %}
 	</ul>
+	
 	{%else%}
-	there are no categories present
+	sorry! there are no categories present. Click the link below to add a category!<br />
 	{%endif%}
-	<a href="/rango/add_category">add a category</a>
-	<a href="/rango/register/">Register Here</a>
+	<a href="/rango/add_category">Add a category</a><br/>
+	<a href="/rango/register/">Register Here</a><br/>
+	<a href="/rango/login/">Login</a><br/>
     </body>
 
 </html>

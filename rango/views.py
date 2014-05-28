@@ -4,6 +4,9 @@ from django.shortcuts import render_to_response
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm
 from rango.forms import UserForm, UserProfileForm
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect, HttpResponse
+
 def index(request):
     context=RequestContext(request)
     category_list=Category.objects.order_by('-likes')[:5]
@@ -123,4 +126,28 @@ def register(request):
             'rango/register.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered},
             context)
+
+def user_login(request):
+    context=RequestContext(request)
+    if request.method=="POST":
+	#process the login
+	#get uname
+	username=request.POST['username']
+	password=request.POST['password']
+	user= authenticate(username=username,password=password)   #authentticate
+	if user:
+	    if user.is_active:
+		login(request,user)
+		return HttpResponseRedirect("/rango/")
+	    else:
+		print "inactive user.cannot login"
+		return HttpResponse("your account is inactive can't log you in")
+	else:
+	    #if auhenticated ie a user object is returned then login and redirect to home; else display the error
+	    print "invalid username and password"
+	    return HttpResponse("wrong login details")
+	    
+    else:
+	#the form has to be displayed
+	return render_to_response('rango/login.html',{},context)
 
