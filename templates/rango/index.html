@@ -1,12 +1,9 @@
-<!DOCTYPE html>
+{% extends 'rango/base.html'%}
 {%load static%}
-<html>
 
-    <head>
-        <title>Rango</title>
-    </head>
+    
 
-    <body>
+    {%block body_block%}
 	<img src="{%static 'images/Aakash_logo.png'%}" alt="aakash logo"><br />
         {%if user.is_authenticated%}
 	<h1>hello {{user.username}}</h1>
@@ -36,6 +33,4 @@
 	<a href="/rango/register/">Register Here</a><br/>
 	<a href="/rango/login/">Login</a><br/>
 	{%endif%}
-    </body>
-
-</html>
+    {%endblock%}

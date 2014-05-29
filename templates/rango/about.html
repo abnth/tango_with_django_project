@@ -1,14 +1,7 @@
-<!DOCTYPE html>
+{% extends 'rango/base.html'%}
 {%load static%}
-<html>
-
-    <head>
-        <title>About page</title>
-    </head>
-
-    <body>
+{%block title%}About page{%endblock%}
+{%block body_block%}
         <img src="{%static 'images/Aakash_logo.png'%}" alt="aakash logo"><br/>
             {{message}}
-    </body>
-
-</html>
+{%endblock%}
