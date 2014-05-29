@@ -4,6 +4,7 @@
     
 
     {%block body_block%}
+	<div class="hero-unit">
 	<img src="{%static 'images/Aakash_logo.png'%}" alt="aakash logo"><br />
         {%if user.is_authenticated%}
 	<h1>hello {{user.username}}</h1>
@@ -33,4 +34,5 @@
 	<a href="/rango/register/">Register Here</a><br/>
 	<a href="/rango/login/">Login</a><br/>
 	{%endif%}
+	</div>
     {%endblock%}
